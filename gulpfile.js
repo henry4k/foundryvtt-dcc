@@ -1,4 +1,4 @@
-const { src, dest, watch, parallel } = require('gulp')
+const { src, dest, watch, parallel, series } = require('gulp')
 const gulpif       = require('gulp-if')
 const rollup       = require('gulp-better-rollup')
 const terser       = require('gulp-terser')
@@ -6,6 +6,7 @@ const sourcemaps   = require('gulp-sourcemaps')
 const sass         = require('gulp-sass')
 const cleanCss     = require('gulp-clean-css')
 const rename       = require('gulp-rename')
+const zip          = require('gulp-zip')
 
 let generateSourceMaps = true
 let compress = false
@@ -33,6 +34,16 @@ const style = () =>
     .pipe(gulpif(generateSourceMaps, sourcemaps.write()))
     .pipe(dest('./'))
 
+const pack = () =>
+    src(['system.json',
+         'template.json',
+         'script.js',
+         'style.css',
+         'templates/*.handlebars',
+         'lang/*.json'], {base: './'})
+    .pipe(zip('dcc.zip'))
+    .pipe(dest('./'))
+
 exports.default = function(cb) {
     parallel(script, style)(cb)
     watch('scripts/*.js', script)
@@ -42,5 +53,7 @@ exports.default = function(cb) {
 exports.release = function(cb) {
     generateSourceMaps = false
     compress = true
-    parallel(script, style)(cb)
+    series(
+        parallel(script, style),
+        pack)(cb)
 }

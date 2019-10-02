@@ -9,6 +9,7 @@
         "gulp-sass": "^4.0.2",
         "gulp-sourcemaps": "^2.6.5",
         "gulp-terser": "^1.2.0",
+        "gulp-zip": "^5.0.0",
         "rollup": "^1.21.2",
         "rollup-plugin-terser": "^5.1.1"
     },
