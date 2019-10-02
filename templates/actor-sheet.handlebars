@@ -1,0 +1,232 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <section>
+        <header>{{localize "DCC.character"}}</header>
+        <div>
+            <span>{{localize "DCC.name"}}</span>
+            <input name="name"
+                   type="text"
+                   value="{{actor.name}}"
+                   placeholder="{{localize "DCC.name"}}"/>
+            <img src="{{actor.img}}"
+                 data-edit="img"
+                 height="32"
+                 width="32"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.occupation"}}</span>
+            <input name="data.details.occupation.value"
+                   type="text"
+                   value="{{data.details.occupation.value}}"
+                   placeholder="{{localize "DCC.occupation"}}"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.class"}}</span>
+            <input name="data.details.class.value"
+                   type="text"
+                   value="{{data.details.class.value}}"
+                   placeholder="{{localize "DCC.class"}}"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.level"}}</span>
+            <input name="data.details.level.value"
+                   type="text"
+                   value="{{data.details.level.value}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.experience"}}</span>
+            <input name="data.details.experience.value"
+                   type="text"
+                   value="{{data.details.experience.value}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.alignment"}}</span>
+            <select name="data.details.alignment.value">
+                {{#select data.details.alignment.value}}
+                    <option value=""></option>
+                    <option value="lawful">{{localize "DCC.lawful"}}</option>
+                    <option value="neutral">{{localize "DCC.neutral"}}</option>
+                    <option value="chaotic">{{localize "DCC.chaotic"}}</option>
+                {{/select}}
+            </select>
+        </div>
+        <div>
+            <span>{{localize "DCC.patronOrDeity"}}</span>
+            <input name="data.details.patron.value"
+                   type="text"
+                   value="{{data.details.patron.value}}"
+                   placeholder="{{localize "DCC.patronOrDeity"}}"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.biography"}}</span>
+            {{editor content=data.details.biography.value
+                     target="data.biography.value"
+                     button=true
+                     owner=owner
+                     editable=editable}}
+        </div>
+    </section>
+    <section>
+        <header>{{localize "DCC.abilities"}}</header>
+        {{#each data.abilities}}
+            <div title="{{localize (concat "DCC." @key)}}">
+                <span>{{localize (concat "DCC." @key "_abbreviation")}}</span>
+                <input name="data.abilities.{{@key}}.value"
+                       type="text"
+                       value="{{value}}"
+                       data-dtype="Number"/>
+                <span>{{modifier}}</span>
+            </div>
+        {{/each}}
+    </section>
+    <section>
+        <header>{{localize "DCC.saves"}}</header>
+        {{#each data.saves}}
+            <div>
+                <span>{{localize (concat "DCC." @key)}}</span>
+                <span>{{value}}</span>
+                <input name="data.saves.{{@key}}.modifier"
+                       type="text"
+                       value="{{modifier}}"
+                       data-dtype="Number"/>
+            </div>
+        {{/each}}
+    </section>
+    <section>
+        <header>Anderes</header>
+        <div>
+            <span>{{localize "DCC.hitPoints"}}</span>
+            <input name="data.attributes.hitPoints.value"
+                   type="text"
+                   value="{{data.attributes.hitPoints.value}}"
+                   data-dtype="Number"/>
+            /
+            <input name="data.attributes.hitPoints.max"
+                   type="text"
+                   value="{{data.attributes.hitPoints.max}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.armorClass"}}</span>
+            <span>{{data.attributes.armorClass.value}}</span>
+            <input name="data.attributes.armorClass.modifier"
+                   type="text"
+                   value="{{data.attributes.armorClass.modifier}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.initiative"}}</span>
+            <span>{{data.attributes.initiative.value}}</span>
+            <input name="data.attributes.initiative.modifier"
+                   type="text"
+                   value="{{data.attributes.initiative.modifier}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.speed"}}</span>
+            <span>{{data.attributes.speed.value}}</span>
+            <input name="data.attributes.speed.base"
+                   type="text"
+                   value="{{data.attributes.speed.base}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.luckyRoll"}}</span>
+            <input name="data.attributes.luckyRoll.value"
+                   type="text"
+                   value="{{data.attributes.luckyRoll.value}}"
+                   data-dtype="String"/>
+            <input name="data.attributes.luckyRollModifier.value"
+                   type="text"
+                   value="{{data.attributes.luckyRollModifier.value}}"
+                   data-dtype="Number"/>
+        </div>
+        <div>
+            <span>{{localize "DCC.actionDice"}}</span>
+            <span>
+                <span class="inline-list">
+                    {{#each data.attributes.actionDice.value as |die index|}}
+                        <button type="button"
+                                data-list="data.attributes.actionDice.value"
+                                data-list-action="remove"
+                                data-list-index="{{index}}">
+                            {{localize "DCC.diceLetter"}}{{this}}
+                        </button>
+                    {{/each}}
+                </span>
+                <span class="new-list-value-button">
+                    <select data-list="data.attributes.actionDice.value"
+                            data-list-action="add">
+                        {{#each (configValue "diceChain")}}
+                            <option value="{{this}}">
+                                {{localize "DCC.diceLetter"}}{{this}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </span>
+            </span>
+        </div>
+        <div>
+            <span>{{localize "DCC.attackBonus"}}</span>
+            <input name="data.attributes.attackBonus.value"
+                   type="text"
+                   value="{{data.attributes.attackBonus.value}}"
+                   data-dtype="Number"/>
+        </div>
+    </section>
+    <section>
+        <header>{{localize "DCC.equipment"}}</header>
+        <div class="item-container">
+            {{#each actor.items as |item id|}}
+                <div class="item" data-item-id="{{item.id}}">
+                    <span>
+                        <img src="{{item.img}}" title="{{item.name}}"/>
+                        <span class="name">{{item.name}}</span>
+                        {{#if item.isWeapon}}
+                            <span>{{item.data.damageDice.count}}{{localize "DCC.diceLetter"}}{{item.data.damageDice.value}}</span>
+                            <button name="attack">attack</button>
+                        {{/if}}
+                        {{#if item.isArmor}}
+                            <span>AC{{numberFormat item.data.armorClassBonus.value sign=true}}</span>
+                        {{/if}}
+                        <button class="unstyled-button item-control item-edit fas fa-edit"
+                                title="Edit Item"
+                                name="editItem"></button>
+                        <button class="unstyled-button item-control item-delete fas fa-trash"
+                                title="Delete Item"
+                                name="deleteItem"></button>
+                    </span>
+                    <input type="checkbox"/>
+                    <span>
+                        {{#item.description}}
+                            <div class="description">{{{this}}}</div>
+                        {{/item.description}}
+                        <div class="inline-list">
+                            {{#item.data}}
+                                {{#if alternateDamageDice.value}}
+                                    <span>
+                                        {{localize "DCC.backstab"}}
+                                        {{alternateDamageDice.count}}
+                                        {{~localize "DCC.diceLetter"~}}
+                                        {{alternateDamageDice.value}}
+                                    <span>
+                                {{/if}}
+                                {{#traits.value}}
+                                    <span>
+                                        {{localize (concat "DCC." this)}}
+                                    </span>
+                                {{/traits.value}}
+                                {{#traits.custom}}
+                                    <span>
+                                        {{this}}
+                                    </span>
+                                {{/traits.custom}}
+                            {{/item.data}}
+                        </div>
+                    </span>
+                </div>
+            {{/each}}
+        </div>
+    </section>
+</form>

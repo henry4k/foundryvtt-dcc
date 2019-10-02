@@ -1,0 +1,94 @@
+@mixin dice-icon($side-count) {
+    &.d#{$side-count} {
+        background-image: url("/icons/svg/d#{$side-count}-grey.svg");
+    }
+}
+
+.dice-result {
+    font-size: 1.2em;
+}
+
+.dice-rolls {
+    display: inline-flex;
+
+    .roll {
+        $dice-size: 1.5em; //32px; //$icon-size;
+
+        width: $dice-size;
+        line-height: $dice-size;
+        float: left;
+        margin-right: 1px;
+        background-image: url("/icons/svg/d6-grey.svg");
+        background-repeat: no-repeat;
+        background-size: $dice-size $dice-size;
+        text-shadow: 0 0 $dice-size/4 $background,
+                     0 0 $dice-size/4 $background;
+        //font-weight: bold;
+        text-align: center;
+
+        @include dice-icon(4);
+        @include dice-icon(6);
+        @include dice-icon(8);
+        @include dice-icon(10);
+        @include dice-icon(12);
+        @include dice-icon(20);
+
+        &.rerolled,
+        &.discarded {
+            text-decoration-line: line-through;
+            text-decoration-style: solid;
+        }
+
+        &.min {
+            color: $negative-highlight;
+        }
+
+        &.max {
+            color: $positive-highlight;
+        }
+    }
+}
+
+.roll-total {
+    font-size: 1.1em;
+    font-weight: bold;
+    //text-decoration-line: underline;
+    //text-decoration-style: solid;
+}
+
+/*
+.inline-roll {
+    display: inline-flex;
+    //display: flex;
+    justify-content: center;
+    position: relative; // Required so absolute positioned elements see
+                        // this as their containing block.
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: currentColor;
+    border-radius: $border-radius;
+
+    > .total {
+        padding-left:  2px;
+        padding-right: 2px;
+        //font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    > .tooltip {
+        display: none;
+        position: absolute;
+        bottom: calc(100% + 5px);
+
+        padding: 1em;
+        background-color: $foreground;
+        color: $background;
+    }
+
+    > *:hover + .tooltip,
+    &:hover > .tooltip {
+        display: inline;
+    }
+}
+*/

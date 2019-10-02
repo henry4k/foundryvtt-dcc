@@ -1,0 +1,19 @@
+<span class="inline-roll">
+    <span class="total">
+        {{total}}
+    </span>
+    <span class="tooltip">
+        {{#each parts}}
+            {{#if isDie}}
+                <span class="dice-rolls">
+                    {{#each rolls}}
+                        <span class="roll {{classes}}" title="d{{sides}}">{{result}}</span>
+                    {{/each}}
+                </span>
+            {{/if}}
+            {{#unless isDie}}
+                {{formula}}
+            {{/unless}}
+        {{/each}}
+    </span>
+</span>

@@ -1,0 +1,97 @@
+<form>
+    <div class="form-group">
+        <label>Attack Die</label>
+        <span>
+            {{#each attack.availableDice}}
+                <span>
+                    <input type="radio"
+                           name="attack.die"
+                           value="{{this}}"
+                           data-dtype="Number"
+                           id="attackDie{{@index}}"
+                           {{#if @first}}checked{{/if}}/>
+                    <label for="attackDie{{@index}}">
+                        {{localize "DCC.diceLetter"}}{{this}}
+                    </label>
+                </span>
+            {{/each}}
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Attack Die Modifier</label>
+        <div>
+            {{#each attack.dieModifiers as |value name|}}
+                <span>
+                    <label>{{localize (concat "DCC." name)}}</label>
+                    <input value="{{value}}"
+                           type="text"
+                           disabled/>
+                </span>
+            {{/each}}
+            <span>
+                <label>{{localize "DCC.custom"}}</label>
+                <input name="attack.dieModifiers.custom"
+                       value="0"
+                       type="text"
+                       data-dtype="Number"/>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Attack Modifier</label>
+        <div>
+            {{#each attack.modifiers as |value name|}}
+                <span>
+                    <label>{{localize (concat "DCC." name)}}</label>
+                    <input value="{{value}}"
+                           type="text"
+                           disabled/>
+                </span>
+            {{/each}}
+            <span>
+                <label>{{localize "DCC.custom"}}</label>
+                <input name="attack.modifiers.custom"
+                       value="0"
+                       type="text"
+                       data-dtype="Number"/>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Damage Dice</label>
+        <span>
+            {{#each damage.availableDiceSets}}
+                <span>
+                    <input type="radio"
+                           name="damage.diceExpr"
+                           value="{{count}}d{{value}}"
+                           id="damageDiceSet{{@index}}"
+                           {{#if @first}}checked{{/if}}/>
+                    <label for="damageDiceSet{{@index}}">
+                        {{count}}{{localize "DCC.diceLetter"}}{{value}}
+                    </label>
+                </span>
+            {{/each}}
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Damage Modifier</label>
+        <div>
+            {{#each damage.modifiers as |value name|}}
+                <span>
+                    <label>{{localize (concat "DCC." name)}}</label>
+                    <input value="{{value}}"
+                           type="text"
+                           disabled/>
+                </span>
+            {{/each}}
+            <span>
+                <label>{{localize "DCC.custom"}}</label>
+                <input name="damage.modifiers.custom"
+                       value="0"
+                       type="text"
+                       data-dtype="Number"/>
+            </span>
+        </div>
+    </div>
+</form>

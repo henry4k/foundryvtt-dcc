@@ -1,0 +1,73 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        </div>
+    </header>
+
+    <nav class="sheet-tabs tabs" data-tab-container="primary">
+        <a class="item active" data-tab="description">Description</a>
+        {{#if hasDetails}}
+            <a class="item" data-tab="details">Details</a>
+        {{/if}}
+    </nav>
+
+    <!-- Item Description -->
+    <div class="tab item-description active" data-tab="description">
+        {{editor content=data.description.value
+                 target="data.description.value"
+                 button=true
+                 owner=owner
+                 editable=editable}}
+    </div>
+
+    <!-- Item Details -->
+    {{#if hasDetails}}
+        <div class="tab item-details" data-tab="details">
+            {{> (detailsTemplate)}}
+            <span>
+                <span class="inline-list">
+                    {{#data.traits.value}}
+                        <button type="button"
+                                data-list="data.traits.value"
+                                data-list-action="remove"
+                                data-list-value="{{this}}">
+                            {{localize (concat "DCC." this)}}
+                        </button>
+                    {{/data.traits.value}}
+                    {{#data.traits.custom}}
+                        <button type="button"
+                                data-list="data.traits.custom"
+                                data-list-action="remove"
+                                data-list-value="{{this}}">
+                            {{this}}
+                        </button>
+                    {{/data.traits.custom}}
+                </span>
+                <span class="new-list-value-button"
+                      title="add trait">
+                    <select data-list="data.traits.value"
+                            data-list-action="add">
+                        {{#each (configValue "weaponTraits")}}
+                            {{#unless (listHas ../data.traits.value this)}}
+                                <option value="{{this}}">
+                                    {{localize (concat "DCC." this)}}
+                                </option>
+                            {{/unless}}
+                        {{/each}}
+                    </select>
+                </span>
+                <span class="new-list-value-button"
+                      title="add custom trait">
+                    <input type="text"
+                           data-list="data.traits.custom"
+                           data-list-action="add"
+                           placeholder="new trait ..."/>
+                </span>
+            </span>
+        </div>
+    {{/if}}
+
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i> Save Changes</button>
+</form>

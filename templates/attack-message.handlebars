@@ -1,0 +1,51 @@
+<div class="dcc">
+    <ul>
+        <li>
+            <span class="colon">Weapon</span>
+            <span>{{item.name}}</span>
+        </li>
+        <li>
+            <div>
+                <span class="colon">Attack</span>
+                <span>
+                    {{#attack.roll}}
+                        {{> (assetPath "templates/inline-roll.handlebars")}}
+                    {{/attack.roll}}
+                </span>
+            </div>
+            <div class="hidden vertical-splitted">
+                <div>
+                    <div>{{localize "DCC.diceLetter"}}{{attack.die}}</div>
+                    {{#each attack.dieModifiers as |value key|}}
+                        <div>
+                            <span>{{numberFormat value decimals=0 sign=true}}{{localize "DCC.diceLetter"}}</span>
+                            <span>{{key}}</span>
+                        </div>
+                    {{/each}}
+                </div>
+                <div>
+                    <div>Modifier</div>
+                    {{#each attack.modifiers as |value key|}}
+                        <div>
+                            <span>{{numberFormat value decimals=0 sign=true}}</span>
+                            <span>{{key}}</span>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </li>
+        <li>
+            <span class="colon">Damage</span>
+            <span>
+                {{#damage.roll}}
+                    {{> (assetPath "templates/inline-roll.handlebars")}}
+                {{/damage.roll}}
+            </span>
+        </li>
+        {{#item.data.description.value}}
+            <li>
+                {{{this}}}
+            </li>
+        {{/item.data.description.value}}
+    </ul>
+</div>

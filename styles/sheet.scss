@@ -1,0 +1,211 @@
+//.dcc.sheet {
+//    border-image-source: url("#{$system-root}/ui/border.png");
+//    border-image-slice: 32;
+//    border-image-width: 32px;
+//    border-image-repeat: repeat;
+//    border-image-outset: 16px;
+//}
+//
+//.dcc.sheet > header {
+//    border: none;
+//}
+
+.dcc.sheet > .window-content {
+    //background: none;
+    padding: 5px;
+    overflow-y: hidden;
+
+    input[type=number] {
+        width: 6em;
+    }
+
+    section {
+        > * {
+            margin-left: 2em;
+        }
+
+        > header {
+            margin-left: 0;
+        }
+    }
+
+    header {
+        font-size: 1.5em;
+        @include border(bottom);
+    }
+
+    > form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tab {
+        flex-grow: 1;
+
+        &.active {
+            display: flex;
+        }
+        flex-direction: column;
+
+        > .editor {
+            flex-grow: 1;
+        }
+    }
+}
+
+.dcc.sheet {
+    .item-container {
+        > * {
+            @include border(top);
+        }
+
+        > :first-child {
+            border-top-style: none;
+        }
+    }
+
+    .item {
+        &:hover {
+            background-color: change-color(white, $alpha: 0.75);
+        }
+
+        input, button {
+            z-index: 1;
+        }
+
+        position: relative;
+        > input[type="checkbox"] {
+            z-index: 0;
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        > input[type="checkbox"] ~ * {
+            display: none;
+        }
+
+        > input[type="checkbox"]:checked ~ * {
+            display: initial;
+        }
+    }
+
+    .item > span {
+        $item-icon-size: $icon-size;
+
+        display: flex;
+        align-items: center;
+
+        > * {
+            margin-left: 0.1em;
+        }
+
+        > :first-child {
+            margin-left: 0;
+        }
+
+        > img {
+            width:  $item-icon-size;
+            height: $item-icon-size;
+        }
+
+        > .name {
+            flex-grow: 1;
+            //text-align: left;
+        }
+
+        > .description {
+            font-style: italic;
+        }
+    }
+
+    .inline-list {
+        display: inline-flex;
+        align-items: baseline;
+
+        > * {
+            display: flex;
+            align-items: baseline;
+
+            &::after {
+                content: ', ';
+                white-space: pre;
+            }
+
+            &:last-child::after {
+                content: none;
+            }
+        }
+
+        > button {
+            @include unstyled-button;
+
+            &:hover {
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    span.new-list-value-button {
+        position: relative;
+
+        border-radius: $border-radius;
+        //border-style: solid;
+        //border-width: 1px;
+        //border-color: change-color(#AAA, $alpha: 0.6); // taken from fvtt style
+        //padding: 1px 3px; // taken from fvtt style
+        //background-color: change-color($background, $alpha: 0.2);
+
+        &::before {
+            content: '+';
+        }
+
+        &:hover {
+            text-shadow: 0 0 5px red;
+        }
+
+        select {
+            @include unstyled-button;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width:  100%;
+            height: 100%;
+
+            color: transparent;
+
+            &:hover {
+                text-shadow: none;
+            }
+        }
+
+        option {
+            color: initial;
+            width: 100px;
+        }
+
+        input {
+            min-width: 0;
+            width: 0;
+            opacity: 0;
+            transition-delay: 0.1s;
+            transition-duration: 0.4s;
+            transition-property: opacity, width;
+            transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); // easeOutQuart
+        }
+
+        &:hover input {
+            width: 100px;
+            opacity: 1;
+        }
+    }
+
+    button.unstyled-button {
+        @include unstyled-button;
+    }
+}

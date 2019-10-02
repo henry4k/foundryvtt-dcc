@@ -1,0 +1,27 @@
+{
+    "name": "dcc",
+    "title": "Dungeon Crawl Classics",
+    "description": "...",
+    "version": 0.1,
+    "author": "henry4k",
+    "scripts": ["script.js"],
+    "styles": ["style.css"],
+    "packs": [],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        },
+        {
+            "lang": "de",
+            "name": "German",
+            "path": "lang/de.json"
+        }
+    ],
+    "initiative": "1d20",
+    "gridDistance": 5,
+    "gridUnits": "ft",
+    "primaryTokenAttribute": "attributes.hitPoints",
+    "secondaryTokenAttribute": null
+}

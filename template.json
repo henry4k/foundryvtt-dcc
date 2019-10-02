@@ -1,0 +1,194 @@
+{
+    "actor": {
+        "data": {
+            "abilities": {
+                "strength": {
+                    "type": "Number",
+                    "value": 10
+                },
+                "agility": {
+                    "type": "Number",
+                    "value": 10
+                },
+                "stamina": {
+                    "type": "Number",
+                    "value": 10
+                },
+                "personality": {
+                    "type": "Number",
+                    "value": 10
+                },
+                "intelligence": {
+                    "type": "Number",
+                    "value": 10
+                },
+                "luck": {
+                    "type": "Number",
+                    "value": 10
+                }
+            },
+            "saves": {
+                "reflex": {
+                    "type": "Number",
+                    "ability": "agility",
+                    "modifier": 0
+                },
+                "fortitude": {
+                    "type": "Number",
+                    "ability": "stamina",
+                    "modifier": 0
+                },
+                "will": {
+                    "type": "Number",
+                    "ability": "personality",
+                    "modifier": 0
+                }
+            },
+            "attributes": {
+                "armorClass": {
+                    "type": "Number",
+                    "base": 10,
+                    "modifier": 0
+                },
+                "hitPoints": {
+                    "type": "Number",
+                    "value": 10,
+                    "min": 0,
+                    "max": 10
+                },
+                "speed": {
+                    "type": "Number",
+                    "base": 30
+                },
+                "initiative": {
+                    "type": "Number",
+                    "modifier": 0
+                },
+                "actionDice": {
+                    "value": []
+                },
+                "luckyRoll": {
+                    "type": "String",
+                    "value": ""
+                },
+                "luckyRollModifier": {
+                    "type": "Number",
+                    "value": 0
+                },
+                "criticalRange": {
+                    "type": "Number",
+                    "value": 0
+                },
+                "attackBonus": {
+                    "type": "Number",
+                    "value": 0
+                }
+            },
+            "details": {
+                 "biography": {
+                    "type": "String",
+                    "value": ""
+                 },
+                 "occupation": {
+                    "type": "String",
+                    "value": ""
+                 },
+                 "class": {
+                    "type": "String",
+                    "value": ""
+                 },
+                 "alignment": {
+                    "type": "String",
+                    "value": ""
+                 },
+                 "patron": {
+                    "type": "String",
+                    "value": ""
+                 },
+                 "level": {
+                    "type": "Number",
+                    "value": 0
+                 },
+                 "experience": {
+                    "type": "Number",
+                    "value": 0
+                 }
+            }
+        }
+    },
+    "item": {
+        "data": {
+            "description": {
+                "type": "String"
+            },
+            "cost": {
+                "type": "Number",
+                "value": 0
+            },
+            "traits": {
+                "value": ["untrained"],
+                "custom": []
+            }
+        },
+        "weapon": {
+            "damageDice": {
+                "type": "Number",
+                "value": 4,
+                "count": 1
+            },
+            "alternateDamageDice": {
+                "type": "Number",
+                "value": 0,
+                "count": 0
+            },
+            "shortRange": {
+                "type": "Number",
+                "value": 0
+            },
+            "mediumRange": {
+                "type": "Number",
+                "value": 0
+            },
+            "longRange": {
+                "type": "Number",
+                "value": 0
+            },
+            "trained": {
+                "type": "Boolean",
+                "value": false
+            }
+        },
+        "armor": {
+            "armorClassBonus": {
+                "type": "Number",
+                "value": 0,
+                "min": 0
+            },
+            "checkPenalty": {
+                "type": "Number",
+                "value": 0,
+                "min": 0
+            },
+            "speedPenalty": {
+                "type": "Number",
+                "value": 0,
+                "min": 0
+            },
+            "fumbleDie": {
+                "type": "Number",
+                "value": 4,
+                "count": 1
+            }
+        },
+        "equipment": {
+            "quantity": {
+                "type": "Number",
+                "value": 1
+            }
+        },
+        "spell": {
+        },
+        "specialAbility": {
+        }
+    }
+}

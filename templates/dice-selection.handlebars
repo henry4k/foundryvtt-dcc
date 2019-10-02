@@ -1,0 +1,19 @@
+{{#unless noCount}}
+    <select name="{{name}}.count" data-dtype="Number">
+        {{#select count}}
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        {{/select}}
+    </select>
+{{/unless}}
+<select name="{{name}}.value" data-dtype="Number">
+    {{#select value}}
+        <option value=""></option>
+        {{#each (configValue "diceChain")}}
+            <option value="{{this}}">{{localize "DCC.diceLetter"}}{{this}}</option>
+        {{/each}}
+    {{/select}}
+</select>

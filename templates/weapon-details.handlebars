@@ -1,0 +1,27 @@
+{{#data.damageDice}}
+<div>
+    <span>Damage Dice</span>
+    {{> (assetPath "templates/dice-selection.handlebars") name="data.damageDice"}}
+</div>
+{{/data.damageDice}}
+{{#data.alternateDamageDice}}
+<div>
+    <span>Alternate Damage Dice</span>
+    {{> (assetPath "templates/dice-selection.handlebars") name="data.alternateDamageDice"}}
+</div>
+{{/data.alternateDamageDice}}
+<div>
+    <span>Range</span>
+    <input name="data.shortRange.value"
+           type="text"
+           value="{{data.shortRange.value}}"
+           data-dtype="Number"/>
+    <input name="data.mediumRange.value"
+           type="text"
+           value="{{data.mediumRange.value}}"
+           data-dtype="Number"/>
+    <input name="data.longRange.value"
+           type="text"
+           value="{{data.longRange.value}}"
+           data-dtype="Number"/>
+</div>
